@@ -3,19 +3,22 @@
     <form id="efirma-form" (submit)="onSubmit($event)">
       
       <!-- Archivo .key -->
-      <!-- <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Archivo .key</mat-label>
         <ngx-mat-file-input 
           id="key" 
           name="key" 
           accept=".key" 
-        
+          [(ngModel)]="keyFile" 
           required 
           placeholder="Selecciona tu archivo .key">
         </ngx-mat-file-input>
+        <mat-icon matSuffix>note_add</mat-icon>
+   
+        <mat-hint>Selecciona tu archivo .key</mat-hint>
         <small>Sube tu archivo .key</small>
       </mat-form-field>
-   -->
+  
       <!-- Archivo .cer -->
       <mat-form-field appearance="fill">
         <mat-label>Archivo .cer</mat-label>
@@ -59,5 +62,20 @@
       <!-- Botón para emitir la firma -->
       <button mat-raised-button color="primary" type="submit">Emitir eFirma</button>
     </form>
+    <div class="form-container">
+      <h2>Formulario con Controles Dinámicos</h2>
+      <form [formGroup]="myGroup" (ngSubmit)="onSubmitDos()">
+        <div *ngFor="let control of respuestas; let i = index">
+          <mat-form-field appearance="fill">
+            <mat-label>Archivo {{ i + 1 }}</mat-label>
+            <input type="file" matInput [formControlName]="'multiplefile' + i" (change)="onFileChange($event, i)" />
+          </mat-form-field>
+          <small>Sube el archivo correspondiente</small>
+        </div>
+    
+        <button mat-raised-button color="primary" type="submit">Enviar</button>
+      </form>
+    </div>
+    
   </div>
   
