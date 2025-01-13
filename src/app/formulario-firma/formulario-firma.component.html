@@ -1,0 +1,63 @@
+<div class="form-container">
+    <h2>Emitir eFirma</h2>
+    <form id="efirma-form" (submit)="onSubmit($event)">
+      
+      <!-- Archivo .key -->
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Archivo .key</mat-label>
+        <ngx-mat-file-input 
+          id="key" 
+          name="key" 
+          accept=".key" 
+        
+          required 
+          placeholder="Selecciona tu archivo .key">
+        </ngx-mat-file-input>
+        <small>Sube tu archivo .key</small>
+      </mat-form-field>
+   -->
+      <!-- Archivo .cer -->
+      <mat-form-field appearance="fill">
+        <mat-label>Archivo .cer</mat-label>
+        <ngx-mat-file-input 
+          id="cer" 
+          name="cer" 
+          accept=".cer" 
+          [(ngModel)]="cerFile" 
+          required 
+          placeholder="Selecciona tu archivo .cer">
+        </ngx-mat-file-input>
+        <small>Sube tu archivo .cer</small>
+      </mat-form-field>
+  
+      <!-- Documento a firmar -->
+      <mat-form-field appearance="fill">
+        <mat-label>Documento a firmar</mat-label>
+        <ngx-mat-file-input 
+          id="document" 
+          name="document" 
+          accept=".pdf" 
+          [(ngModel)]="documentFile" 
+          required 
+          placeholder="Selecciona el documento a firmar">
+        </ngx-mat-file-input>
+        <small>Sube el documento (.pdf) a firmar</small>
+      </mat-form-field>
+  
+      <!-- Contraseña -->
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>        
+
+        <input matInput type="password" id="password" name="password" placeholder="Introduce tu contraseña"         
+        
+          [(ngModel)] = "password"         
+        
+        required>
+
+      </mat-form-field>
+  
+      <!-- Botón para emitir la firma -->
+      <button mat-raised-button color="primary" type="submit">Emitir eFirma</button>
+    </form>
+  </div>
+  

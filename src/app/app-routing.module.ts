@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: '',
+        path: 'efirma',
         loadChildren: () => import('./efirma/efirma.module').then(m => m.EfirmaModule)
       }
     ]
