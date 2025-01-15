@@ -1,70 +1,8 @@
 <div class="form-container">
-    <h2>Emitir eFirma</h2>
-    <form id="efirma-form" (submit)="onSubmit($event)">
-      
-      <!-- Archivo .key -->
-      <mat-form-field appearance="fill">
-        <mat-label>Archivo .key</mat-label>
-        <ngx-mat-file-input 
-          id="key" 
-          name="key" 
-          accept=".key" 
-          [(ngModel)]="keyFile" 
-          required 
-          placeholder="Selecciona tu archivo .key">
-        </ngx-mat-file-input>
-        <mat-icon matSuffix>note_add</mat-icon>
-   
-        <mat-hint>Selecciona tu archivo .key</mat-hint>
-        <small>Sube tu archivo .key</small>
-      </mat-form-field>
-  
-      <!-- Archivo .cer -->
-      <mat-form-field appearance="fill">
-        <mat-label>Archivo .cer</mat-label>
-        <ngx-mat-file-input 
-          id="cer" 
-          name="cer" 
-          accept=".cer" 
-          [(ngModel)]="cerFile" 
-          required 
-          placeholder="Selecciona tu archivo .cer">
-        </ngx-mat-file-input>
-        <small>Sube tu archivo .cer</small>
-      </mat-form-field>
-  
-      <!-- Documento a firmar -->
-      <mat-form-field appearance="fill">
-        <mat-label>Documento a firmar</mat-label>
-        <ngx-mat-file-input 
-          id="document" 
-          name="document" 
-          accept=".pdf" 
-          [(ngModel)]="documentFile" 
-          required 
-          placeholder="Selecciona el documento a firmar">
-        </ngx-mat-file-input>
-        <small>Sube el documento (.pdf) a firmar</small>
-      </mat-form-field>
-  
-      <!-- Contraseña -->
-      <mat-form-field appearance="fill">
-        <mat-label>Contraseña</mat-label>        
 
-        <input matInput type="password" id="password" name="password" placeholder="Introduce tu contraseña"         
-        
-          [(ngModel)] = "password"         
-        
-        required>
-
-      </mat-form-field>
-  
-      <!-- Botón para emitir la firma -->
-      <button mat-raised-button color="primary" type="submit">Emitir eFirma</button>
-    </form>
-    <div class="form-container">
-      <h2>Formulario con Controles Dinámicos</h2>
-      <form [formGroup]="myGroup" (ngSubmit)="onSubmitDos()">
+  <div class="form-container">
+    <h2>Emitir efirma</h2>
+    <!-- <div [formGroup]="myGroup" >
         <div *ngFor="let control of respuestas; let i = index">
           <mat-form-field appearance="fill">
             <mat-label>Archivo {{ i + 1 }}</mat-label>
@@ -74,8 +12,62 @@
         </div>
     
         <button mat-raised-button color="primary" type="submit">Enviar</button>
-      </form>
-    </div>
-    
+      </div> -->
+
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+            <!-- Archivo 1 -->
+            <div class="file-input">
+              <label>Archivo Cer</label>
+              <input type="file"  (change)="onFileSelected($event, 'file1')" accept=".cer" />
+              <mat-error *ngIf="formulario.get('file1')?.invalid && formulario.get('file1')?.touched">
+                Archivo requerido
+              </mat-error>
+            </div>
+      
+            <!-- Archivo 2 -->
+            <div class="file-input">
+              <label>Archivo Key</label>
+              <input type="file" (change)="onFileSelected($event, 'file2')" accept=".key" />
+              <mat-error *ngIf="formulario.get('file2')?.invalid && formulario.get('file2')?.touched">
+                Archivo requerido
+              </mat-error>
+            </div>
+      
+            <!-- Archivo 3 -->
+            <div class="file-input">
+              <label>Archivo a firmar</label>
+              <input type="file" (change)="onFileSelected($event, 'file3')" accept=".pdf,.doc,.docx" />
+              <mat-error *ngIf="formulario.get('file3')?.invalid && formulario.get('file3')?.touched">
+                Archivo requerido
+              </mat-error>
+            </div>
+      
+            <!-- Archivo 4 -->
+      
+      
+            <!-- Contraseña -->
+       
+              <!-- Contraseña -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="formulario.get('password')?.invalid && formulario.get('password')?.touched">
+          Contraseña requerida
+        </mat-error>
+      </mat-form-field>
+      
+            <!-- Botón de envío -->
+            <div class="actions">
+              <button mat-raised-button color="primary" type="submit"  [disabled]="formulario.invalid">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+      
+      
   </div>
-  
+</div>

@@ -16,6 +16,8 @@ import { NgxEditorModule } from 'ngx-editor';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
+import { EfirmaService } from './efirma/efirma.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
+    HttpClientModule, 
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
@@ -81,7 +84,7 @@ import {
       }
     })
   ],
-  providers: [],
+  providers: [EfirmaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
