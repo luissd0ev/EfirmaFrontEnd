@@ -29,7 +29,7 @@ import {
         });
         const url = `${this.api}/Firmar`;
         return this.http.post(url, formData, {
-          headers: headers,
+    
           responseType: 'blob', // Indicamos que la respuesta será un archivo binario (Blob)
         });
       }
